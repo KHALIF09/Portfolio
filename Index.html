@@ -1,0 +1,423 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sheikh Khalif - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <style>
+    :root {
+      --primary: #00E5FF;
+      --secondary: #7B61FF;
+      --accent: #00FF87;
+      --bg: #0a0a1a;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --text: #e0e0ff;
+      --nav-bg: rgba(10, 10, 26, 0.95);
+    }* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.theme-switcher {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: var(--card-bg);
+  padding: 10px;
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+header {
+  padding: 100px 0 150px;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  opacity: 0.1;
+}
+
+.container {
+  text-align: center;
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header h1 {
+  font-size: 4rem;
+  margin: 0;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  color: rgba(224, 224, 255, 0.8);
+}
+
+nav {
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(123, 97, 255, 0.2);
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px;
+  margin: 0;
+  list-style: none;
+}
+
+nav ul li a {
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  padding: 5px 0;
+  font-weight: 500;
+}
+
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+.section {
+  padding: 100px 20px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.skill-card {
+  background: linear-gradient(145deg, var(--card-bg), rgba(123, 97, 255, 0.05));
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid rgba(123, 97, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-10px);
+}
+
+.skill-progress {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.skill-progress span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 4px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.project-card {
+  background: linear-gradient(145deg, var(--card-bg), rgba(123, 97, 255, 0.05));
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid rgba(123, 97, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  box-shadow: 0 0 25px rgba(123, 97, 255, 0.1);
+  transform: translateY(-5px);
+}
+
+.tech-stack {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tech-tag {
+  background: rgba(123, 97, 255, 0.1);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.contact-info {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.contact-info a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+  color: var(--primary);
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-input {
+  width: 100%;
+  padding: 15px 20px;
+  margin: 15px 0;
+  background: rgba(123, 97, 255, 0.05);
+  border: 1px solid rgba(123, 97, 255, 0.2);
+  color: var(--text);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
+}
+
+button.form-input {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+footer {
+  background: var(--nav-bg);
+  text-align: center;
+  padding: 30px 0;
+  border-top: 1px solid rgba(123, 97, 255, 0.2);
+}
+
+@keyframes pulse {
+  0% { text-shadow: 0 0 10px var(--primary); }
+  50% { text-shadow: 0 0 20px var(--secondary); }
+  100% { text-shadow: 0 0 10px var(--primary); }
+}
+
+@keyframes border-glow {
+  0% { border-color: var(--primary); }
+  50% { border-color: var(--secondary); }
+  100% { border-color: var(--primary); }
+}
+
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <div class="theme-switcher" onclick="toggleTheme()">🌓</div>  <header>
+    <div class="container">
+      <h1>SHEIKH KHALIF</h1>
+      <p class="subtitle">2nd Year IT Engineering @ NIT Srinagar | Tech Innovator</p>
+    </div>
+  </header>  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>  <main>
+    <section id="about" class="section">
+      <div class="container">
+        <h2>About Me</h2>
+        <p class="animated-text">
+          🚀 Passionate IT Engineering student at the National Institute of Technology, Srinagar. 
+          Specializing in full-stack development with expertise in modern web technologies. 
+          Currently exploring AI applications and cloud-native architectures.
+        </p>
+      </div>
+    </section><section id="skills" class="section">
+  <div class="container">
+    <h2>Technical Expertise</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Java Development</h3>
+        <div class="skill-progress"><span style="width: 85%"></span></div>
+      </div>
+      <div class="skill-card">
+        <h3>Web Development</h3>
+        <div class="skill-progress"><span style="width: 80%"></span></div>
+      </div>
+      <div class="skill-card">
+        <h3>Data Structures</h3>
+        <div class="skill-progress"><span style="width: 75%"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="section">
+  <div class="container">
+    <h2>Featured Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3>Dynamic Portfolio Platform</h3>
+        <p>Created an interactive portfolio with theme switching and particle effects</p>
+        <div class="tech-stack">
+          <span class="tech-tag">HTML5</span>
+          <span class="tech-tag">CSS3</span>
+          <span class="tech-tag">JavaScript</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <h3>Algorithm Visualizer</h3>
+        <p>Interactive tool demonstrating sorting and searching algorithms</p>
+        <div class="tech-stack">
+          <span class="tech-tag">Java</span>
+          <span class="tech-tag">Swing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <div class="container">
+    <h2>Get In Touch</h2>
+    <div class="contact-info">
+      <p>📧 <a href="mailto:khalif.123.sk@gmail.com">khalif.123.sk@gmail.com</a></p>
+      <p>💼 <a href="https://www.linkedin.com/in/sheikh-khalif-6509ba137" target="_blank">LinkedIn Profile</a></p>
+      <p>👨💻 <a href="https://github.com/KHALIF09" target="_blank">GitHub Portfolio</a></p>
+    </div>
+    <form class="contact-form">
+      <input type="text" class="form-input" placeholder="Your Name" required>
+      <input type="email" class="form-input" placeholder="Email Address" required>
+      <textarea class="form-input" rows="5" placeholder="Your Message..." required></textarea>
+      <button type="submit" class="form-input">Send Message</button>
+    </form>
+  </div>
+</section>
+
+  </main>  <footer>
+    <p>&copy; 2023 <span style="color: var(--primary)">SHEIKH KHALIF</span>. All Rights Reserved.</p>
+  </footer>  <script>
+    // Particles Configuration
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 120, density: { enable: true, value_area: 800 } },
+        color: { value: "#00E5FF" },
+        shape: { type: "circle" },
+        opacity: { value: 0.7, random: true },
+        size: { value: 2.5, random: true },
+        move: {
+          enable: true,
+          speed: 2.5,
+          direction: "none",
+          random: true,
+          straight: false,
+          out_mode: "bounce",
+          bounce: false
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" },
+          resize: true
+        }
+      },
+      retina_detect: true
+    });
+
+    // Theme Switcher
+    let isDark = true;
+    function toggleTheme() {
+      isDark = !isDark;
+      document.documentElement.style.setProperty('--bg', isDark ? '#0a0a1a' : '#f5f5ff');
+      document.documentElement.style.setProperty('--text', isDark ? '#e0e0ff' : '#1a1a1a');
+      document.documentElement.style.setProperty('--nav-bg', isDark ? 'rgba(10, 10, 26, 0.95)' : 'rgba(245, 245, 255, 0.95)');
+    }
+
+    // Scroll Animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    });
+
+    document.querySelectorAll('.section').forEach((el) => {
+      observer.observe(el);
+    });
+  </script></body>
+</html>
